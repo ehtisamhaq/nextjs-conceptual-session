@@ -1,6 +1,24 @@
-import { registerUser } from "@/lib/actions";
+import { getUsers, registerUser } from "@/lib/actions";
+import {
+  Key,
+  ReactElement,
+  JSXElementConstructor,
+  ReactNode,
+  ReactPortal,
+  AwaitedReactNode,
+} from "react";
 
-const RegisterPage = () => {
+const RegisterPage = async () => {
+  // const user = await getUsers();
+
+  const res = await fetch(`${process.env.API_URL}`, {
+    next: {
+      tags: ["user"],
+    },
+  });
+  const user = await res.json();
+  console.log({ user: user.data });
+
   return (
     <div className="">
       <form action={registerUser} className="space-y-4 ">
@@ -39,6 +57,15 @@ const RegisterPage = () => {
           Submit
         </button>
       </form>
+
+      <div className="border-2 m-3 p-3 grid grid-cols-3 gap-2">
+        {user.data.map((user: { id: Key; name: string; email: string }) => (
+          <div key={user.id} className="border">
+            <p>{user.name}</p>
+            <p>{user.email}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

@@ -2,9 +2,9 @@ import React, { ReactNode } from "react";
 
 const RoutingLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <div className="border-2 p-2 m-2">
       <p>RoutingLayout</p>
-      {children}
+      <div>{children}</div>
     </div>
   );
 };

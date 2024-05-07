@@ -12,3 +12,13 @@ export async function POST(req: Request, res: Response) {
 
   return NextResponse.json({ data: user }, { status: 200 });
 }
+
+export async function GET(req: Request, res: Response) {
+  try {
+    const user = await prisma.user.findMany();
+
+    return NextResponse.json({ data: user }, { status: 200 });
+  } catch (error) {
+    console.log(error);
+  }
+}

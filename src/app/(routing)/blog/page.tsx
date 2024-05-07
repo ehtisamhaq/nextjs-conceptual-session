@@ -1,5 +1,9 @@
 import { Metadata } from "next";
-import React from "react";
+import React, { Suspense } from "react";
+import SingleBlogPage from "./[id]/page";
+import BlogDetailsLoading from "./[id]/loading";
+import ClientData from "@/app/(rendering)/client/components/ClientData";
+import ServerPage from "@/app/(rendering)/server/page";
 
 // Static metadata
 export const metadata: Metadata = {
@@ -7,7 +11,15 @@ export const metadata: Metadata = {
 };
 
 const BlogPage = () => {
-  return <div>BlogPage</div>;
+  return (
+    <div>
+      BlogPage
+      {/* <ServerPage /> */}
+      <Suspense fallback={<BlogDetailsLoading />}>
+        <ServerPage />
+      </Suspense>
+    </div>
+  );
 };
 
 export default BlogPage;

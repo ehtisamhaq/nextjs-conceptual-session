@@ -1,7 +1,7 @@
 import { revalidateJokes } from "@/lib/actions";
 
 // Server-side Rendering (SSR)
-/* async function getAITools() {
+async function getAITools() {
   const res = await fetch(
     `https://official-joke-api.appspot.com/jokes/programming/ten`,
     { cache: "no-store" }
@@ -9,7 +9,7 @@ import { revalidateJokes } from "@/lib/actions";
   const aiTools = await res.json();
 
   return aiTools;
-} */
+}
 
 // Static Site Generation (SSG)
 /* async function getAITools() {
@@ -23,18 +23,18 @@ import { revalidateJokes } from "@/lib/actions";
 } */
 
 // Incremental Static Regeneration (ISR)
-async function getAITools() {
-  const res = await fetch(
-    `https://official-joke-api.appspot.com/jokes/programming/ten`,
-    {
-      next: { tags: ["jokes"] },
-      // next: { revalidate: 10 },
-    }
-  );
-  const aiTools = await res.json();
+// async function getAITools() {
+//   const res = await fetch(
+//     `https://official-joke-api.appspot.com/jokes/programming/ten`,
+//     {
+//       next: { tags: ["jokes"] },
+//       // next: { revalidate: 10 },
+//     }
+//   );
+//   const aiTools = await res.json();
 
-  return aiTools;
-}
+//   return aiTools;
+// }
 
 const ServerPage = async () => {
   const dynamicData = await getAITools();
